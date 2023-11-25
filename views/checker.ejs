@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset = "utf-8">
+        <meta name ="viewport " content =" width=device-width, initial-scale=1">
+        <title> AYUSH SYSTEM FOR MEDICINE</title>
+        <!---custom css linnk---->
+        <!-- <link rel ="stylesheet"  type="text/css" href="style.css" > -->
+        <link rel ="stylesheet"  type="text/css" href="stylecheck.css" >
+        <!-- boxicons link -->
+        <link rel="stylesheet"
+        href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
+        <!-- remixicons link -->
+        <link href="https://cdn.jsdelivr.net/npm/remixicon@3.2.0/fonts/remixicon.css" rel="stylesheet">
+        <!-- google font link -->
+        
+        
+         <link rel="preconnect" href="https://fonts.googleapis.com">
+         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+         <link href="https://fonts.googleapis.com/css2?family=Courgette&family=Dancing+Script&family=Instrument+Serif:ital@0;1&family=Ubuntu&display=swap" rel="stylesheet">
+         <link rel="preconnect" href="https://fonts.googleapis.com">
+         
+         <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+         <link rel="preconnect" href="https://fonts.googleapis.com">
+          
+        <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Rubik+Pixels&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Rubik+Pixels&family=Sigmar&display=swap" rel="stylesheet">
+    </head>
+        <body><div class="background">
+            
+            <%- include('./partials/header.ejs') %>
+
+            <section class="hero">
+                <div class="herounit">
+                    <h1> Plagiarism Checker </h1>
+                    <h2><small>An online utility to check if a document's contents are plagiarised. <br></small></h2>
+                    <p> </p>
+                    <a class="btn btn-info btn-large" data-toggle='modal' href='https://www.ox.ac.uk/students/academic/guidance/skills/plagiarism' target="_blank"> Learn More </a>
+                    <!-- <a class="ctaa" href='scripts/scripts.zip'> Download Scripts! </a> -->
+                    
+                </div> 
+                <div class="iconsfile">
+                        <a href="#">
+                            <i class='bx bx-file'></i>
+                        </a>   
+                        <h2>
+                            THESIS
+                        </h2>
+                          
+                </div>
+                <!-- class struct of the input area -->
+                <div class="struct">
+                    <form action="/checker" method="post" id="form1">
+                        <label class=name for="name">Name:</label>
+                        <input type="text" id="name" name="name" required>
+
+                        <label class =name for="topic">Topic:</label>
+                        <input type="text" id="topic" name="topic" required>
+
+                        <label class =name for="thesis">Text:</label>
+                        <textarea id="text" name="thesis" placeholder= "Enter text or upload a file below" rows="4" required></textarea>
+
+                        <label class =name  for="file">Upload a file:</label>
+                        <input type="file" id="file" name="file" accept=".txt, .docx, .html">
+
+                        <input type="submit" value="Submit">
+                    </form>
+                </div>
+
+
+
+            </section>
+
+            
+
+
+
+
+        </div>
+        <script defer>
+            document.forms['form1'].elements['file'].onchange = function(evt) {
+            if(!window.FileReader) return; // Browser is not compatible
+
+            var reader = new FileReader();
+
+            reader.onload = function(evt) {
+            if(evt.target.readyState != 2) return;
+            if(evt.target.error) {
+            alert('Error while reading file');
+            return;
+            }
+
+            filecontent = evt.target.result;
+
+            document.forms['form1'].elements['thesis'].value = evt.target.result;
+            };
+
+            reader.readAsText(evt.target.files[0]);
+            };
+        </script>
+        </body>
+        </html>

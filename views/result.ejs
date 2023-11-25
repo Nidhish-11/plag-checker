@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Plagiarism Checker - Results</title>
+        <!-- custom css link -->
+        <link rel="stylesheet" href="./styleresult.css">
+ 
+        <!-- boxicons link -->
+        <link rel="stylesheet"
+        href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
+        <!-- remixicons link -->
+        <link href="https://cdn.jsdelivr.net/npm/remixicon@3.2.0/fonts/remixicon.css" rel="stylesheet">
+        <!-- google font link -->
+        
+        
+         <link rel="preconnect" href="https://fonts.googleapis.com">
+         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+         <link href="https://fonts.googleapis.com/css2?family=Courgette&family=Dancing+Script&family=Instrument+Serif:ital@0;1&family=Ubuntu&display=swap" rel="stylesheet">
+         <link rel="preconnect" href="https://fonts.googleapis.com">
+         
+         <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+         <link rel="preconnect" href="https://fonts.googleapis.com">
+         <link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Merriweather:ital,wght@1,700&family=Nanum+Myeongjo:wght@800&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Rubik+Pixels&display=swap" rel="stylesheet">
+</head>
+
+<style>
+    
+     
+ 
+  .b-skills
+  {
+    /* border-top: 1px solid #f9f9f9; */
+    padding-top: 46px;
+    text-align: center;
+  }
+  
+  .b-skills:last-child { margin-bottom: -30px; }
+  
+  .b-skills h2 { margin-bottom: 50px; font-weight: 900; text-transform: uppercase;}
+  
+  .skill-item
+  {
+    position: relative;
+    max-width: 250px;
+    width: 100%;
+    margin-bottom: 30px;
+    color: white;
+  }
+  
+  .chart-container
+  {
+    position: relative;
+    width: 100%;
+    height: 0;
+    padding-top: 100%;
+    margin-bottom: 27px;
+  }
+  
+  .skill-item .chart,
+  .skill-item .chart canvas
+  {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100% !important;
+    height: 100% !important;
+  }
+  
+  .skill-item .chart:before
+  {
+    content: "";
+    width: 0;
+    height: 100%;
+  }
+  
+  .skill-item .chart:before,
+  .skill-item .percent
+  {
+    display: inline-block;
+    vertical-align: middle;
+  }
+  
+  .skill-item .percent
+  {
+    position: relative;
+    line-height: 1;
+    font-size: 40px;
+    font-weight: 900;
+    z-index: 2;
+  }
+  
+  .skill-item  .percent:after
+  {
+    content: attr(data-after);
+    font-size: 20px;
+  }
+         
+         p{
+             font-weight: 900;
+         }
+   
+      
+      </style>
+
+<body><div class="background">
+  
+  <%- include('./partials/header.ejs') %>
+
+  <main>
+    <section class="hero">
+     
+  
+      <div class="resultscon1">
+        <div class="inputcon">          
+          <p style="font-size: 20px;"><label class=name><strong>Name:</strong></label> <%= name %></p>     
+          
+          <h2><strong >Plagiarism Score:</strong> <%= score %></h2>
+        </div>
+        </div>
+    
+      <div class="res-div">
+           Total Words&emsp;    
+    
+           Identical Words&emsp;
+
+           Related Meaning Words&emsp;
+        
+           Minor Changed Words&emsp;
+        </div>
+        <div class="no"><%= totalWords %>&emsp;&emsp;&emsp;&emsp;<%= identicalWords %>&emsp;&emsp;&emsp;&emsp;&emsp;&nbsp;&nbsp;<%= relatedMeaningWords %>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&nbsp; <%= minorChangedWords %></div>
+        <div>
+          
+        
+            <span id="so" class="source">SOURCE</span>&nbsp;&nbsp;&nbsp;
+              <span id="ti" class="title">TITLE</span>&nbsp;&nbsp;&nbsp;
+              <span id="ma" class="matched">WORDS</span>
+        
+          
+        </div>
+    
+        <ul class="source-list">
+          <% if(internet.length > 0) { %>
+            <% internet.forEach(source => { %>
+             
+              <li>
+                <span class="sources"><%= source.url %></span>
+                <span class="titles"><%= source.title %></span>
+                <span class="match-words"><%= source.matchedWords %></span>
+              </li>
+
+            <% }) %>
+          <% } %>
+        </ul>
+        
+
+      <!-- <div class =" plagimg1">
+        <img src="./3297225.png" width="200" height="200">
+    </div> -->
+      
+    </section>
+  </main>
+  
+
+  <footer>
+    <p>&copy; 2023 AYUSHMAN SYSTEM FOR MEDICINE</p>
+  </footer>
+</div>
+<div class ="plagimg1">
+<div class="b-skills">
+  <div class="container">
+    
+
+    <div class="row">
+      <div class="col-xs-12 col-sm-6 col-md-3">
+        <div class="skill-item center-block">
+          <div class="chart-container">
+            <div class="chart " data-percent="<%= score %>" data-bar-color="#cc0000">
+              <span class="percent" data-after="%"><%= score %></span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+
+
+      </div>
+    </div>
+  </div>
+  </div>>
+</div>
+  <br><br><br><br><br>
+
+
+
+<br><br><br><br>  
+
+
+
+<script src="./jquery-2.2.4.min.js"></script>
+<script src="./jquery.appear.min.js"></script>
+<script src="./jquery.easypiechart.min.js"></script> 
+<script>
+'use strict';
+
+var $window = $(window);
+
+function run()
+{
+var fName = arguments[0],
+aArgs = Array.prototype.slice.call(arguments, 1);
+try {
+fName.apply(window, aArgs);
+} catch(err) {
+
+}
+};
+
+/* chart
+================================================== */
+function _chart ()
+{
+$('.b-skills').appear(function() {
+setTimeout(function() {
+$('.chart').easyPieChart({
+  easing: 'easeOutElastic',
+  delay: 3000,
+  barColor: '#369670',
+  trackColor: 'white',
+  scaleColor: false,
+  lineWidth: 21,
+  trackWidth: 21,
+  size: 250,
+  lineCap: 'round',
+  onStep: function(from, to, percent) {
+    this.el.children[0].innerHTML = Math.round(percent);
+  }
+});
+}, 150);
+});
+};
+
+
+$(document).ready(function() {
+
+run(_chart);
+
+
+});
+
+
+
+</script>
+
+</body>
+</html>
