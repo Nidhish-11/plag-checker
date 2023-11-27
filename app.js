@@ -13,11 +13,6 @@ let thesisrepo = new ThesisRepo();
 
 let results = {name: '', score: '', totalWords: '', identicalWords: '', relatedMeaningWords: '', minorChangedWords: ''};
 
-/*copyleaks.loginAsync('nidhishgambhir@gmail.com','f33d926e-e2a0-48ce-b182-f54c5cfb6ec7')
-    .then(res=> {
-        console.log(res);
-    } , err=> {});*/
-
 const dbURI = 'mongodb+srv://root:root@plagchecker.zupi6lg.mongodb.net/PlagChecker?retryWrites=true&w=majority';
 mongoose.connect(dbURI)
     .then((result) => app.listen(3000))
@@ -126,7 +121,7 @@ plagCheck = () => {
     }
     });
 
-    copyleaks.loginAsync('nidhishgambhir@gmail.com','f33d926e-e2a0-48ce-b182-f54c5cfb6ec7')
+    copyleaks.loginAsync('<login mail>','<token>')
     .then(res=> {
         console.log(res.access_token);
         tk = res.access_token;
@@ -147,7 +142,7 @@ plagCheck = () => {
         "properties": { \
         "sandbox": true, \
         "webhooks": { \
-            "status": "https://826a-223-178-213-107.ngrok-free.app/{STATUS}/scan" \
+            "status": "https://826a-223-178-223-107.ngrok-free.app/{STATUS}/scan" \
         } \
         } \
         }';
